@@ -7,7 +7,6 @@ Scotch POIを使用 Wrapperです & BDD ライブラリです。
 1. POIを簡単に(OOP的に)使用できるように
 2. 出力ファイルをBDD的にテストする 
 
-
 # Sample
 ワークブック作成
 ```java
@@ -18,12 +17,21 @@ Scotch POIを使用 Wrapperです & BDD ライブラリです。
 
 ワークブックのテスト
 ```java
+// セルのスタイルの確認
 new シート(s).のセル("B10").のスタイル().の横位置が右詰め();
 
+// セルの値の確認
 new シート(TestExpected.getFirstSheetOf("compareTarget.xls")).のセル("H18").から("F21").の文字列が("テスト");
+
+// フォントの確認
+new シート(TestExpected.getFirstSheetOf("expected.xls")).のセル("C10").のフォントは("ＭＳ Ｐゴシック");
+
+// 罫線の確認
+new シート(TestExpected.getFirstSheetOf("compareTarget.xls")).のセル("H6").から("I8").のそれぞれののセルが罫線で囲まれている();
+
+// etc...
+
 ```
-
-
 
 # TODO
 * 全然できてない、、、足りない機能などなど実装
