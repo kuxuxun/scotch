@@ -35,6 +35,6 @@ new シート(TestExpected.getFirstSheetOf("compareTarget.xls")).のセル("H6")
 ```
 
 # TODO
-* 全然できてない、、、足りない機能などなど実装
+* いろいろ足りない機能などなど実装、、、(列の幅のテストやらなんやら)
 
 
