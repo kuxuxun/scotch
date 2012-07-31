@@ -9,11 +9,21 @@ Scotch POIを使用 Wrapperです & BDD ライブラリです。
 
 
 # Sample
+ワークブック作成
 ```java
    ScWorkbook wb = new ScWorkbook();
    ScSheet s = wb.createSheet("test");
    ScCell c3 = s.getCellAt("C3");
 ```
+
+ワークブックのテスト
+```java
+new シート(s).のセル("B10").のスタイル().の横位置が右詰め();
+
+new シート(TestExpected.getFirstSheetOf("compareTarget.xls")).のセル("H18").から("F21").の文字列が("テスト");
+```
+
+
 
 # TODO
 * 全然できてない、、、足りない機能などなど実装
