@@ -10,9 +10,9 @@ Scotch POIを使用 Wrapperです & BDD ライブラリです。
 
 # Sample
 ```java
-   ScWorkbook tw = new ScWorkbook();
-   ScSheet t = tw.createSheet("test");
-   ScCell c3 = e.getCellAt("C3");
+   ScWorkbook wb = new ScWorkbook();
+   ScSheet s = wb.createSheet("test");
+   ScCell c3 = s.getCellAt("C3");
 ```
 
 # TODO
