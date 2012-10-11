@@ -15,9 +15,27 @@ public class In {
 		range.getBottomRight().toReference());
 	}
 
+	public ScRange toScRange() {
+		return new ScRange(new ScPos(start), new ScPos(end));
+	}
+
 	public In(String start, String end) {
 		this.start = start;
 		this.end = end;
+
+		// TODO emptyを許すのかどうか再考
+		if (n2b(start).length() == 0 || n2b(end).length() == 0) {
+			throw new IllegalStateException("ポジションが指定されていませんです start:[" + start
+					+ "] end: [" + end + "]");
+		}
+		toScRange().validRangeOrThrowException();
+
+	}
+
+	private static String n2b(String s) {
+		if (s == null)
+			return "";
+		return s;
 	}
 
 	public String start() {

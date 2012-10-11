@@ -5,12 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.github.kuxuxun.scotch.excel.ScSheet;
-import com.github.kuxuxun.scotch.excel.area.ScPos;
 import com.github.kuxuxun.scotch.excel.area.ScRange;
 import com.github.kuxuxun.scotch.excel.cell.ScCell;
 
@@ -26,45 +23,56 @@ public class AssertMergedCells {
 		return new AssertMergedCells(file);
 	}
 
-	public void cellsAreMerged(In designatedRange)
-			throws FileNotFoundException, IOException {
-		List<ScRange> ranges = sheet.getMergedRanges();
+	public void cellsAreMerged(In rangeCheckTo) throws FileNotFoundException,
+			IOException {
+		final List<ScRange> allMargedRangesInSheet = sheet.getMergedRanges();
 
-		ScRange correspondingRange = ScRange.selectWhichContainOrNull(
-				designatedRange.getPositions().get(0), ranges);
+		final ScRange rangeThatContainsTopleftCell = ScRange
+				.selectWhichContainOrNull(rangeCheckTo.getPositions().get(0),
+						allMargedRangesInSheet);
 
-		if (correspondingRange == null) {
-			throw new IllegalArgumentException("指定のセルを含む、結合セルがありません："
-					+ designatedRange.getPositions().get(0).toString());
+		if (rangeThatContainsTopleftCell == null) {
+			throw new IllegalArgumentException("指定のセルを含む結合セルがありません："
+					+ rangeCheckTo.getPositions().get(0).toString());
 		}
 
-		final Set<String> designatedRefs = new HashSet<String>();
-		for (ScPos each : designatedRange.getPositions()) {
-			designatedRefs.add(each.toReference());
-		}
-
-		In mergedCellAreaOfSheet = In.fromScRange(correspondingRange);
-
-		new AssertIn(sheet, mergedCellAreaOfSheet) {
+		// チェック範囲の各セルが同一の結合範囲に含まれるか確認
+		new AssertIn(sheet, rangeCheckTo) {
 			@Override
 			public void that(ScCell cell) throws FileNotFoundException,
 					IOException {
 
-				boolean result = designatedRefs.contains(cell.getPos()
-						.toReference());
+				ScRange rangeThatContainsTheCell = ScRange
+						.selectWhichContainOrNull(cell.getPos(),
+								allMargedRangesInSheet);
 
-				assertTrue(cell.getPos().toReference() + "もマージ範囲に含まれている: ",
-						result);
+				if (rangeThatContainsTheCell == null) {
+					throw new IllegalArgumentException("指定のセルを含む結合セルがありません："
+							+ cell.getPos().toString());
+				}
+				if (!rangeThatContainsTheCell
+						.equals(rangeThatContainsTopleftCell)) {
+					throw new IllegalArgumentException(cell.getPos()
+							+ "は異なる結合範囲に含まれています。");
+				}
+
 			}
 		}.doAssert();
 
+		// チェック対象の範囲 = 結合セルの範囲であるか確認
+
+		assertTrue("もっと広い範囲が結合されています。 指定:["
+				+ rangeCheckTo.toScRange().toString() + "] ,but actual ["
+				+ rangeThatContainsTopleftCell.toString() + "]",
+				rangeThatContainsTopleftCell.equals(rangeCheckTo.toScRange()));
+
 	}
 
-	public void cellsAreNotMerged(In designatedRange)
+	public void cellsAreNotMerged(In rangeCheckTo)
 			throws FileNotFoundException, IOException {
 		final List<ScRange> ranges = sheet.getMergedRanges();
 
-		new AssertIn(sheet, designatedRange) {
+		new AssertIn(sheet, rangeCheckTo) {
 			@Override
 			public void that(ScCell cell) throws FileNotFoundException,
 					IOException {
@@ -72,7 +80,8 @@ public class AssertMergedCells {
 				ScRange containingRange = ScRange.selectWhichContainOrNull(cell
 						.getPos(), ranges);
 
-				assertNull(cell.getPos().toReference() + "がマージ範囲に含まれていない: ",
+				assertNull(
+						cell.getPos().toReference() + "がマージ範囲に含まれていてはいけない: ",
 						containingRange);
 			}
 		}.doAssert();

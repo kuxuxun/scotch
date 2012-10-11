@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HeaderFooter;
 import org.apache.poi.ss.usermodel.PrintSetup;
@@ -187,4 +186,11 @@ public class ScSheet extends ReflectionHelper {
 		this.currentRow = currentRow;
 	}
 
+	public boolean isProtected() {
+		return poiSheet.getProtect();
+	}
+
+	public String getName() {
+		return poiSheet.getSheetName();
+	}
 }

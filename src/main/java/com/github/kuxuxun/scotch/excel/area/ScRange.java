@@ -52,6 +52,25 @@ public class ScRange extends ScArea {
 	public ScRange(ScPos topLeft, ScPos bottomRight) {
 		this.topLeft = topLeft;
 		this.bottomRight = bottomRight;
+
+	}
+
+	public void validRangeOrThrowException() {
+		if (topLeft.getRow() > bottomRight.getRow()) {
+			throw new IllegalStateException(
+					"topleftがbottomrightの下にあります,topleft:" + topLeft.toString()
+							+ " bottomright:" + bottomRight.toString()
+							+ "=> row [" + topLeft.getRow() + ":"
+							+ bottomRight.getRow() + "]");
+		}
+
+		if (topLeft.getCol() > bottomRight.getCol()) {
+			throw new IllegalStateException(
+					"topleftがbottomrightの右にあります,topleft:" + topLeft.toString()
+							+ " bottomright:" + bottomRight.toString()
+							+ "=> col [" + topLeft.getCol() + ":"
+							+ bottomRight.getCol() + "]");
+		}
 	}
 
 	public static ScRange in(int topRow, int leftCol, int bottomRow,
@@ -97,6 +116,33 @@ public class ScRange extends ScArea {
 	@Override
 	public int getRightCol() {
 		return this.bottomRight.getCol();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof ScRange)) {
+			return false;
+		}
+		ScRange that = (ScRange) obj;
+
+		return (this.topLeft.equals(that.topLeft) && this.bottomRight
+				.equals(that.bottomRight));
+
+	}
+
+	@Override
+	public int hashCode() {
+		int r = this.topLeft.hashCode();
+		r += this.bottomRight.hashCode() * 31;
+		return r;
+	}
+
+	@Override
+	public String toString() {
+		return topLeft.toString() + ":" + bottomRight.toString();
 	}
 
 }

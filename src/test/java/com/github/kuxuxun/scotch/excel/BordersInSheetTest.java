@@ -218,227 +218,227 @@ public class BordersInSheetTest extends TestHelper {
 	public class MockCellStyle implements CellStyle {
 
 		public void cloneStyleFrom(CellStyle source) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public short getAlignment() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getBorderBottom() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getBorderLeft() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getBorderRight() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getBorderTop() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getBottomBorderColor() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getDataFormat() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public String getDataFormatString() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return null;
 		}
 
 		public short getFillBackgroundColor() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public Color getFillBackgroundColorColor() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return null;
 		}
 
 		public short getFillForegroundColor() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public Color getFillForegroundColorColor() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return null;
 		}
 
 		public short getFillPattern() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getFontIndex() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public boolean getHidden() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return false;
 		}
 
 		public short getIndention() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getIndex() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getLeftBorderColor() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public boolean getLocked() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return false;
 		}
 
 		public short getRightBorderColor() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getRotation() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getTopBorderColor() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public short getVerticalAlignment() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return 0;
 		}
 
 		public boolean getWrapText() {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 			return false;
 		}
 
 		public void setAlignment(short align) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setBorderBottom(short border) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setBorderLeft(short border) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setBorderRight(short border) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setBorderTop(short border) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setBottomBorderColor(short color) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setDataFormat(short fmt) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setFillBackgroundColor(short bg) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setFillForegroundColor(short bg) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setFillPattern(short fp) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setFont(Font font) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setHidden(boolean hidden) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setIndention(short indent) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setLeftBorderColor(short color) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setLocked(boolean locked) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setRightBorderColor(short color) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setRotation(short rotation) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setTopBorderColor(short color) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setVerticalAlignment(short align) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 
 		public void setWrapText(boolean wrapped) {
-			// TODO 自動生成されたメソッド・スタブ
+			// TODO 閾ｪ蜍慕函謌舌＆繧後◆繝｡繧ｽ繝�繝峨�ｻ繧ｹ繧ｿ繝�
 
 		}
 

@@ -13,4 +13,9 @@ public class フォント {
 		return FontExample.Builder.simpleArial(size).setBold(true).build();
 	}
 
+	public static FontExample 太文字斜体サイズは(int size) {
+		return FontExample.Builder.simpleArial(size).setBold(true).setItalic(
+				true).build();
+	}
+
 }

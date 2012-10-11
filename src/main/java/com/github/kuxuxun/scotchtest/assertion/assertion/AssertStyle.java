@@ -39,6 +39,21 @@ public class AssertStyle {
 		return desc;
 	}
 
+	public void isLocked(final boolean expected, In range)
+			throws FileNotFoundException, IOException {
+		new AssertIn(sheet, range) {
+			@Override
+			public void that(ScCell cell) throws FileNotFoundException,
+					IOException {
+
+				assertEquals(cell.getPos().toReference() + "のセルのロック: ",
+						expected, cell.getStyle().getStyleWithoutFont()
+								.isLocked());
+			}
+		}.doAssert();
+
+	}
+
 	public void filledColorIs(final ScColor expected, In range)
 			throws FileNotFoundException, IOException {
 		new AssertIn(sheet, range) {
@@ -46,7 +61,7 @@ public class AssertStyle {
 			public void that(ScCell cell) throws FileNotFoundException,
 					IOException {
 
-				assertEquals(cell.getPos().toReference() + "の値: ", expected,
+				assertEquals(cell.getPos().toReference() + "の背景色: ", expected,
 						cell.getStyle().getStyleWithoutFont().getFgColor());
 			}
 		}.doAssert();
@@ -61,7 +76,7 @@ public class AssertStyle {
 			public void that(ScCell cell) throws FileNotFoundException,
 					IOException {
 
-				assertEquals(cell.getPos().toReference() + "の値: ", expected,
+				assertEquals(cell.getPos().toReference() + "の形式: ", expected,
 						cell.getStyle().getStyleWithoutFont()
 								.getDataFormatString());
 			}
@@ -97,11 +112,6 @@ public class AssertStyle {
 			}
 		}.doAssert();
 
-	}
-
-	public void cellAreMarged(In range) {
-		// FIXME 要実装
-		throw new UnsupportedOperationException("未実装");
 	}
 
 	public void colWidthInSettingVal(final BigDecimal expectedWidth, In range)

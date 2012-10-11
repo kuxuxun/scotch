@@ -8,6 +8,9 @@ public enum DataFormatExample {
 	/** e.g 1000.5 => 1,001 */
 	INTEGER_COMMA_NEGRED("#,###;[Red]\\-#,###"),
 
+	/** e.g 1000.5 => 1,001 */
+	INTEGER_COMMA_NEGRED_LAST_0("#,##0_ ;[Red]\\-#,##0\\ "),
+
 	/** e.g 2000500 => 2,001 */
 	INTEGER_IN_KILO_NEGRED("#,##0,;[Red]\\-#,##0,;#"),
 

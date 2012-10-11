@@ -43,7 +43,7 @@ public enum ScPaperSize {
 				return each;
 			}
 		}
-		throw new IllegalArgumentException("未対応なPOI用紙サイズです : " + ps);
+		throw new IllegalArgumentException("未対応な用紙サイズです : " + ps);
 	}
 
 	public String getShortName() {

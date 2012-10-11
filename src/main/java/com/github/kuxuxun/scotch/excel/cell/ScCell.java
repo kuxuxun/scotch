@@ -3,7 +3,6 @@ package com.github.kuxuxun.scotch.excel.cell;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -108,14 +107,16 @@ public class ScCell {
 
 	public enum CellType {
 
-		BLANK(Cell.CELL_TYPE_BLANK), BOOLEAN(Cell.CELL_TYPE_BOOLEAN), FORMULA(
-				Cell.CELL_TYPE_FORMULA), STRING(Cell.CELL_TYPE_STRING), NUMERIC(
-				Cell.CELL_TYPE_NUMERIC), ERROR(Cell.CELL_TYPE_ERROR), UNKNOWN(
-				-99);
+		BLANK(Cell.CELL_TYPE_BLANK, "[空]"), BOOLEAN(Cell.CELL_TYPE_BOOLEAN,
+				"真理値"), FORMULA(Cell.CELL_TYPE_FORMULA, "式"), STRING(
+				Cell.CELL_TYPE_STRING, "文字列"), NUMERIC(Cell.CELL_TYPE_NUMERIC,
+				"数値"), ERROR(Cell.CELL_TYPE_ERROR, "エラー"), UNKNOWN(-99, "[不明]");
 		private final int typeNumber;
+		private final String description;
 
-		private CellType(int typeNumber) {
+		private CellType(int typeNumber, String description) {
 			this.typeNumber = typeNumber;
+			this.description = description;
 		}
 
 		public static CellType getTypeFromNumberAs(int number) {
@@ -138,6 +139,10 @@ public class ScCell {
 
 		public boolean isUnknown() {
 			return this == UNKNOWN;
+		}
+
+		public String getDescription() {
+			return description;
 		}
 	}
 

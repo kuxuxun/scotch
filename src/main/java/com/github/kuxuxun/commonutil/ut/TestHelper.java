@@ -17,7 +17,18 @@ import java.util.List;
 
 public class TestHelper {
 
-    Calendar cal = Calendar.getInstance();
+	Calendar cal = Calendar.getInstance();
+
+	static public List<String> toSeq(char from, char to) {
+		List<String> l = new ArrayList<String>();
+
+		int range = to - from;
+		for (int i = 0; i <= range; i++) {
+			l.add(Character.toString((Character.toChars(from + i))[0]));
+		}
+
+		return l;
+	}
 
 	public static Date date(String s) throws ParseException {
 		String[] p = s.split("/");

@@ -165,6 +165,32 @@ public class AssertBorders {
 				.getOnBottom(), range);
 	}
 
+	private void assertNoInternalLineIfApropriateCell(ScPos pos,
+			CellBorders bordersInRange, In range) {
+
+		if (!range.isLeftEdge(pos)) {
+			assertTrue(pos.toReference() + "の左に罫線がない事", !bordersInRange
+					.getOnLeft().isAvailable());
+
+		}
+
+		if (!range.isTopEdge(pos)) {
+			assertTrue(pos.toReference() + "の上に罫線がない事", !bordersInRange
+					.getOnTop().isAvailable());
+		}
+
+		if (!range.isRightEdge(pos)) {
+			assertTrue(pos.toReference() + "の右に罫線がない事", !bordersInRange
+					.getOnRight().isAvailable());
+		}
+
+		if (!range.isBottomEdge(pos)) {
+			assertTrue(pos.toReference() + "の下に罫線がない事", !bordersInRange
+					.getOnBottom().isAvailable());
+		}
+
+	}
+
 	private void assertBottomBorderOnlyIfEdge(ScPos pos,
 			CellBorders bordersInRange, Border expectBorder, In range) {
 		if (range.isBottomEdge(pos)) {
@@ -231,6 +257,23 @@ public class AssertBorders {
 					BordersInSheet borders) {
 				assertAroundBoxIfApropriateCell(cell.getPos(),
 						bordersOfTheCell, expectBorders, range);
+			}
+
+		}.doAssert();
+
+	}
+
+	// TODO UT
+	public void noInternalBorderIn(final In range) throws IOException {
+
+		new Assert(sheet, range) {
+
+			@Override
+			public void withBorders(ScCell cell, CellBorders bordersOfTheCell,
+					BordersInSheet borders) {
+
+				assertNoInternalLineIfApropriateCell(cell.getPos(),
+						bordersOfTheCell, range);
 			}
 
 		}.doAssert();
@@ -344,22 +387,27 @@ public class AssertBorders {
 		}
 
 		private In createBorderCheckRange(final In range) {
-			In fetchBorderRange = new In("", "") {
+			// TODO
+
+			final String start = new ScPos(range.start()).moveInRow(-1)
+					.moveInCol(-1).toReference();
+			final String end = new ScPos(range.end()).moveInCol(1).moveInRow(1)
+					.toReference();
+
+			In fetchBorderRange = new In(start, end) {
+
 				@Override
 				public String end() {
-					return new ScPos(range.end()).moveInCol(1).moveInRow(1)
-							.toReference();
+					return end;
 				}
 
 				@Override
 				public String start() {
-					ScPos pos = new ScPos(range.start());
-					return pos.moveInRow(-1).moveInCol(-1).toReference();
+					return start;
 				}
 			};
 			return fetchBorderRange;
 		}
-
 	}
 
 }

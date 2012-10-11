@@ -1,5 +1,7 @@
 package com.github.kuxuxun.scotchtest.assertion;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import com.github.kuxuxun.commonutil.ut.TestExpected;
@@ -10,10 +12,30 @@ import com.github.kuxuxun.scotchtest.assertion.assertion.utils.CellBorders.Borde
 import com.github.kuxuxun.scotchtest.assertion.bdd.シート;
 
 public class AssertBorderTest {
+
+	@Test
+	public void 結合されている１行分セルのボーダーの指定が間違っていた場合正しくエラーとなる() throws Exception {
+
+		boolean exeptionOccured = false;
+		try {
+
+			// 罫線はB22からD22範囲についている
+			new シート(TestExpected.getFirstSheetOf("compareTarget.xls")).のセル(
+					"B22").から("E22").の範囲が線(Border.medium(ScColor.BLACK))
+					.で囲まれており中線が無い();
+
+		} catch (Throwable e) {
+			exeptionOccured = true;
+		}
+
+		assertTrue(exeptionOccured);
+
+	}
+
 	@Test
 	public void AllEachSurroundByborderTest() throws Exception {
 		new シート(TestExpected.getFirstSheetOf("compareTarget.xls")).のセル("H6")
-				.から("I8").のそれぞれののセルが罫線で囲まれている();
+				.から("I8").のそれぞれのセルが罫線で囲まれている();
 
 		AssertBorders.that(TestExpected.getFirstSheetOf("compareTarget.xls"))
 				.eachCellsSurroundByThinBorder(new In("H6", "I8"));

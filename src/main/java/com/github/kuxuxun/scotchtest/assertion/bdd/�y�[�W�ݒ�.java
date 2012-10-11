@@ -2,6 +2,7 @@ package com.github.kuxuxun.scotchtest.assertion.bdd;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import com.github.kuxuxun.commonutil.ut.TestHelper;
 import com.github.kuxuxun.scotch.excel.ScSheet;
@@ -67,6 +68,17 @@ public class ページ設定 extends TestHelper {
 	public ページ設定 の用紙の向きは(String ori) throws Exception {
 		AssertPageSetting.that(targetSheet).pageOrientation(ori);
 		return this;
+	}
+
+	public ページ設定 は次の拡大率で印刷される(BigDecimal dec) throws Exception {
+		AssertPageSetting.that(targetSheet).printWithScaling(dec);
+
+		// hssfとは違いxssf ではチェックがついてなくても取得される模様
+		// AssertPageSetting.that(targetSheet).printPageFitTo(
+		// PageFitting.pageNotFit());
+
+		return this;
+
 	}
 
 	public ページ設定 は次の縦横ページに合わせて印刷される(int v, int h) throws Exception {

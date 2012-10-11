@@ -1,5 +1,7 @@
 package com.github.kuxuxun.scotchtest.assertion.assertion;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -24,10 +26,15 @@ public abstract class AssertIn {
 	public void doAssert() throws FileNotFoundException, IOException {
 
 		List<ScPos> poses = range.getPositions();
+		boolean assertAtLeaseOnce = false;
+
 		for (ScPos each : poses) {
 			ScCell cell = sheet.getCellAt(each);
 			that(cell);
+			assertAtLeaseOnce = true;
 		}
+
+		assertTrue("アサーションが最低一回は走っている", assertAtLeaseOnce);
 
 	}
 }

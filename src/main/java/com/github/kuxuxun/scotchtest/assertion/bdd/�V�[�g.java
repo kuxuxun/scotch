@@ -1,8 +1,11 @@
 package com.github.kuxuxun.scotchtest.assertion.bdd;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,7 @@ import com.github.kuxuxun.scotch.excel.area.ScPos;
 import com.github.kuxuxun.scotch.excel.cell.ScColor;
 import com.github.kuxuxun.scotchtest.assertion.AssertBorders;
 import com.github.kuxuxun.scotchtest.assertion.AssertFont;
+import com.github.kuxuxun.scotchtest.assertion.assertion.AssertSheetSetting;
 import com.github.kuxuxun.scotchtest.assertion.assertion.AssertStyle;
 import com.github.kuxuxun.scotchtest.assertion.assertion.AssertValue;
 import com.github.kuxuxun.scotchtest.assertion.assertion.At;
@@ -84,8 +88,14 @@ public class シート extends TestHelper {
 		return new スタイル(targetReport, range);
 	}
 
-	public シート のそれぞれののセルが罫線で囲まれている() throws Exception {
+	public シート のそれぞれのセルが罫線で囲まれている() throws Exception {
 		AssertBorders.that(targetReport).eachCellsSurroundByThinBorder(range);
+		return this;
+	}
+
+	public シート のそれぞれのセルが次の罫線で囲まれている(Border b) throws Exception {
+		AssertBorders.that(targetReport).eachCellsSurroundBy(b, range);
+
 		return this;
 	}
 
@@ -120,8 +130,18 @@ public class シート extends TestHelper {
 		return this;
 	}
 
+	public シート の範囲に中線が無い() throws FileNotFoundException, IOException {
+		AssertBorders.that(targetReport).noInternalBorderIn(range);
+		return this;
+	}
+
 	public シート の左の罫線は(Border b) throws FileNotFoundException, IOException {
 		AssertBorders.that(targetReport).isLeftBorder(b, range);
+		return this;
+	}
+
+	public シート の左に罫線はない() throws FileNotFoundException, IOException {
+		の左の罫線は(Border.empty());
 		return this;
 	}
 
@@ -130,13 +150,34 @@ public class シート extends TestHelper {
 		return this;
 	}
 
+	public シート の上に罫線はない() throws FileNotFoundException, IOException {
+		の上の罫線は(Border.empty());
+		return this;
+	}
+
+	public シート の名前は(String expected) throws FileNotFoundException, IOException {
+
+		assertEquals("シート名が", expected, targetReport.getName());
+		return this;
+	}
+
 	public シート の右の罫線は(Border b) throws FileNotFoundException, IOException {
 		AssertBorders.that(targetReport).isRightBorder(b, range);
 		return this;
 	}
 
+	public シート の右に罫線はない() throws FileNotFoundException, IOException {
+		の右の罫線は(Border.empty());
+		return this;
+	}
+
 	public シート の下の罫線は(Border b) throws FileNotFoundException, IOException {
 		AssertBorders.that(targetReport).isBottomBorder(b, range);
+		return this;
+	}
+
+	public シート の下に罫線はない() throws FileNotFoundException, IOException {
+		の下の罫線は(Border.empty());
 		return this;
 	}
 
@@ -268,11 +309,29 @@ public class シート extends TestHelper {
 
 	}
 
+	public シート のフォーマットが数値_カンマ_負数は赤で最少桁が0() throws FileNotFoundException,
+			IOException {
+		AssertStyle.that(targetReport)
+				.dataFormatIs(
+						DataFormatExample.INTEGER_COMMA_NEGRED_LAST_0
+								.getFormatString(), range);
+		return this;
+
+	}
+
 	public シート のフォーマットが小数点以下2桁_負数は赤() throws FileNotFoundException, IOException {
 		AssertStyle.that(targetReport).dataFormatIs(
 
 		DataFormatExample.INTEGER_AFTER_POINT_TWO_NEGRED.getFormatString(),
 				range);
+
+		return this;
+
+	}
+
+	public シート のフォーマットが(String formatString) throws FileNotFoundException,
+			IOException {
+		AssertStyle.that(targetReport).dataFormatIs(formatString, range);
 
 		return this;
 
@@ -304,8 +363,31 @@ public class シート extends TestHelper {
 		return this;
 	}
 
+	public シート の日付が(String yyyymmdd) throws Exception {
+		AssertValue.that(targetReport).hasDate(
+				new SimpleDateFormat("yyyyMMdd")
+						.parse(removeDateSeparator(yyyymmdd)), range, "");
+		return this;
+	}
+
+	private static String removeDateSeparator(String s) {
+		return s.replaceAll("/", "").replaceAll("-", "");
+	}
+
 	public シート の小数点２桁以上の数値が(BigDecimal dec) throws Exception {
 		の数値が(dec, 2);
+		return this;
+	}
+
+	public シート の整数値が(int num) throws Exception {
+		AssertValue.that(targetReport).hasNumber("整数値の値 が正しいこと",
+				new BigDecimal(num), 0, range);
+
+		return this;
+	}
+
+	public シート の式が(String expected) throws Exception {
+		AssertValue.that(targetReport).hasFormula("式が正しい事", expected, range);
 		return this;
 	}
 
@@ -323,5 +405,21 @@ public class シート extends TestHelper {
 
 	public 範囲チェック の範囲が() throws Exception {
 		return new 範囲チェック(targetReport, range);
+	}
+
+	public void が保護されている() {
+		AssertSheetSetting.that(targetReport).isProtected();
+	}
+
+	public void は保護されていない() {
+		AssertSheetSetting.that(targetReport).isProtected();
+	}
+
+	public void のセルがロックされている() throws Exception {
+		AssertStyle.that(targetReport).isLocked(true, range);
+	}
+
+	public void のセルがロックされていない() throws Exception {
+		AssertStyle.that(targetReport).isLocked(false, range);
 	}
 }

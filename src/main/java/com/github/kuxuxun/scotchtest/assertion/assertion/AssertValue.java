@@ -41,12 +41,7 @@ public class AssertValue {
 			public void that(ScCell cell) throws FileNotFoundException,
 					IOException {
 
-				if (!cell.getCellType().is(CellType.BLANK)) {
-					throw new IllegalArgumentException(cell.getPos()
-							.toReference()
-							+ " : の値が空ではありません");
-					// TODO 独自Exceptionに
-				}
+				cellHasExpectedTypeOrInterrupt(cell, CellType.BLANK);
 
 				// 空ならば通る
 			}
@@ -61,12 +56,7 @@ public class AssertValue {
 			public void that(ScCell cell) throws FileNotFoundException,
 					IOException {
 
-				if (!cell.getCellType().is(CellType.STRING)) {
-					throw new IllegalArgumentException(cell.getPos()
-							.toReference()
-							+ " : の値は文字列ではありません");// TODO
-					// 独自Exceptionに
-				}
+				cellHasExpectedTypeOrInterrupt(cell, CellType.STRING);
 
 				String desc = makeDesc(descritpion);
 
@@ -84,6 +74,7 @@ public class AssertValue {
 			public void that(ScCell cell) throws FileNotFoundException,
 					IOException {
 
+				// dateFormattedも見るので cellHasExpectedTypeOrInterruptは使わない
 				if (!(cell.getCellType().is(CellType.NUMERIC) && cell
 						.isDateFormatted())) {
 					throw new IllegalArgumentException(cell.getPos()
@@ -115,20 +106,17 @@ public class AssertValue {
 			public void that(ScCell cell) throws FileNotFoundException,
 					IOException {
 
-				if (!cell.getCellType().is(CellType.NUMERIC)) {
-					throw new IllegalArgumentException(cell.getPos()
-							.toReference()
-							+ " : の値は数値ではありません");// TODO
-					// 独自Exceptionに
-				}
+				cellHasExpectedTypeOrInterrupt(cell, CellType.NUMERIC);
 
 				String desc = makeDesc(descritpion);
 
 				BigDecimal roundedVal = cell.getNumericValue().setScale(
 						figAferDecimal, BigDecimal.ROUND_HALF_UP);
 
-				assertTrue(desc + cell.getPos().toReference() + "の値: ",
-						expected.compareTo(roundedVal) == 0);
+				assertTrue(desc + cell.getPos().toReference() + "の値: expected["
+						+ expected.toString() + "] but ["
+						+ roundedVal.toString() + "]", expected
+						.compareTo(roundedVal) == 0);
 			}
 		}.doAssert();
 	}
@@ -141,12 +129,7 @@ public class AssertValue {
 			public void that(ScCell cell) throws FileNotFoundException,
 					IOException {
 
-				if (!cell.getCellType().is(CellType.FORMULA)) {
-					throw new IllegalArgumentException(cell.getPos()
-							.toReference()
-							+ " : の値は式ではありません");// TODO
-					// 独自Exceptionに
-				}
+				cellHasExpectedTypeOrInterrupt(cell, CellType.FORMULA);
 
 				String desc = makeDesc(descritpion);
 
@@ -154,6 +137,17 @@ public class AssertValue {
 						expected, cell.getFormula());
 			}
 		}.doAssert();
+	}
+
+	public static void cellHasExpectedTypeOrInterrupt(ScCell cell,
+			CellType expectedType) {
+		if (!cell.getCellType().is(expectedType)) {
+			// TODO 独自Exceptionに
+			throw new IllegalArgumentException(cell.getPos().toReference()
+					+ " : の値は" + expectedType.getDescription() + "ではありません。["
+					+ cell.getCellType().getDescription() + "]");
+
+		}
 	}
 
 }

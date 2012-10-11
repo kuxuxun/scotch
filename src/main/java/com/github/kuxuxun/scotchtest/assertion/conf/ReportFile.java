@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import com.github.kuxuxun.scotch.excel.ScSheet;
 import com.github.kuxuxun.scotch.excel.ScWorkbook;
 import com.github.kuxuxun.scotch.excel.ScWorkbookFactory;
@@ -42,6 +44,9 @@ public abstract class ReportFile {
 			wb = ScWorkbookFactory.createFromFile(new File(dir + fileName));
 
 		} catch (IOException e) {
+			throw new IllegalStateException("ワークブックの読み込みに失敗しました:" + dir
+					+ fileName);
+		} catch (InvalidFormatException e) {
 			throw new IllegalStateException("ワークブックの読み込みに失敗しました:" + dir
 					+ fileName);
 		}

@@ -23,7 +23,7 @@ public class AssertValueTest extends TestHelper {
 	@Test
 	public void assertRangeValue() throws Exception {
 
-		new シート(TestExpected.getFirstSheetOf("compareTarget.xls")).のセル("H18")
+		new シート(TestExpected.getFirstSheetOf("expected.xls")).のセル("F18")
 				.から("F21").の文字列が("テスト");
 
 		AssertValue.that(report).hasText("範囲内の文字が正しい", "テスト",

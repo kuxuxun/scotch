@@ -5,42 +5,28 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ScWorkbookFactory {
 
-	public static ScWorkbook createFromFile(File wbfile) throws IOException {
-		return create(WBFileKind.getFromFile(wbfile), new FileInputStream(
-				wbfile));
+	public static ScWorkbook createFromFile(File wbfile) throws IOException,
+			InvalidFormatException {
+		return create(new FileInputStream(wbfile));
 
 	}
 
-	public static ScWorkbook create(WBFileKind kind, InputStream is)
-			throws IOException {
+	public static ScWorkbook create(InputStream is) throws IOException,
+			InvalidFormatException {
 
-		Workbook wb = null;
-		switch (kind) {
-		case XLS:
-			wb = new HSSFWorkbook(is);
-			break;
-
-		case XML:
-		case XLSX:
-			wb = new HSSFWorkbook(is);
-			break;
-
-		default:
-		}
-
-		return new ScWorkbook(wb);
+		return new ScWorkbook(WorkbookFactory.create(is));
 	}
 
 	/**
 	 * ワークブックファイルの種類を表現します
 	 */
 	public enum WBFileKind {
-		XLSX("xlsx"), XML("xml"), XLS("xls");
+		XLSM("xlsm"), XLSX("xlsx"), XML("xml"), XLS("xls");
 		private final String extractor;
 
 		private WBFileKind(String extractor) {
